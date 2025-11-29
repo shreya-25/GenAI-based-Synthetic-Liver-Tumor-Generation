@@ -1,0 +1,25 @@
+V2 changes made ------------
+
+Here are the key improvements needed in GANTraining.py: Critical fixes:
+
+Enforce tumor-specific loss - Add a loss term that specifically encourages dark tumor regions:
+Add a tumor region intensity loss that penalizes weak contrast
+Use gradient magnitude loss to enforce sharp tumor boundaries
+
+Better normalization - The current HU normalization might be washing out tumor intensity:
+Consider using a more aggressive normalization that preserves tumor contrast
+Or use separate normalization for tumor vs background regions
+
+Patch selection - Extract patches with higher tumor contrast:
+Filter patches based on minimum intensity difference between tumor and background
+Ensure extracted patches have visible, high-contrast tumors
+
+Architecture improvements:
+Add skip connections to preserve fine details
+Use attention mechanisms focused on tumor regions
+Increase network capacity in the final layers
+
+Loss function enhancement:
+Add L1 loss on tumor regions specifically
+Add edge-preserving loss for tumor boundaries
+Use a discriminator that focuses on tumor texture, not just overall appearance
